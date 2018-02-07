@@ -1,8 +1,8 @@
 <asset_composite xmlns="http://namespaces.softwareag.com/acdl/1.0" targetNamespace="http://namespaces.softwareag.com/webMethods/IS" name="TestPackage" runtimeVersion="10.2.0.0">
   <implementation.generic type="ispackage" />
-  <buildInfo name="build.version" value="10.1.21" />
-  <buildInfo name="BuildVersion" value="10.1.21" />
-  <buildInfo name="BuildTimestamp" value="2018-02-07T11:58:00" />
+  <buildInfo name="build.version" value="10.1.22" />
+  <buildInfo name="BuildVersion" value="10.1.22" />
+  <buildInfo name="BuildTimestamp" value="2018-02-07T12:28:42" />
   <buildInfo name="MinimumTargetRuntimeVersion" value="10.2.0.0" />
   <property name="activatePkgOnInstall" displayName="Activate Package On Install">
     <value>true</value>
@@ -38,8 +38,49 @@
     <implementation.generic type="isflowservice" />
     <dependsOn>IS:testServices.f1</dependsOn>
   </asset>
+  <asset name="AdapterConnection.TestAdapterConnection" displayName="AdapterConnection:TestAdapterConnection">
+    <implementation.generic type="artconnection" />
+    <property name="art.deployment.state" displayName="State After Deployment">
+      <value>disable</value>
+    </property>
+    <property name="uri">
+      <value>terracotta://localhost:9410</value>
+    </property>
+    <property name=".CMGRPROP.poolable" displayName="poolable">
+      <value>true</value>
+    </property>
+    <property name=".CMGRPROP.minimumPoolSize" displayName="minimumPoolSize">
+      <value>1</value>
+    </property>
+    <property name=".CMGRPROP.maximumPoolSize" displayName="maximumPoolSize">
+      <value>10</value>
+    </property>
+    <property name=".CMGRPROP.poolIncrementSize" displayName="poolIncrementSize">
+      <value>1</value>
+    </property>
+    <property name=".CMGRPROP.blockingTimeout" displayName="blockingTimeout">
+      <value>1000</value>
+    </property>
+    <property name=".CMGRPROP.expireTimeout" displayName="expireTimeout">
+      <value>1000</value>
+    </property>
+    <property name=".CMGRPROP.startupRetryCount" displayName="startupRetryCount">
+      <value>0</value>
+    </property>
+    <property name=".CMGRPROP.startupBackoffSecs" displayName="startupBackoffSecs">
+      <value>10</value>
+    </property>
+  </asset>
+  <asset name="testServices.InvokeTestAdapterService" displayName="testServices:InvokeTestAdapterService">
+    <implementation.generic type="isflowservice" />
+    <dependsOn>IS:AdapterService.TestAdapterService</dependsOn>
+  </asset>
   <asset name="testServices.f1" displayName="testServices:f1">
     <implementation.generic type="isflowservice" />
+  </asset>
+  <asset name="AdapterService.TestAdapterService" displayName="AdapterService:TestAdapterService">
+    <implementation.generic type="artservice" />
+    <dependsOn>IS:AdapterConnection.TestAdapterConnection</dependsOn>
   </asset>
   <asset name="TestPackage.code" displayName="code">
     <implementation.generic type="isfolder" />
