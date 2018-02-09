@@ -1,0 +1,270 @@
+<asset_composite xmlns="http://namespaces.softwareag.com/acdl/1.0" targetNamespace="http://namespaces.softwareag.com/webMethods/IS" name="HelloDBP" runtimeVersion="10.1.0.0">
+  <implementation.generic type="ispackage" />
+  <buildInfo name="build.version" value="10.1.9" />
+  <buildInfo name="BuildVersion" value="10.1.9" />
+  <buildInfo name="BuildTimestamp" value="2018-02-09T05:31:37" />
+  <buildInfo name="MinimumTargetRuntimeVersion" value="10.1.0.0" />
+  <property name="activatePkgOnInstall" displayName="Activate Package On Install">
+    <value>true</value>
+  </property>
+  <property name="archivePkgOnInstall" displayName="Archive Package On Install">
+    <value>true</value>
+  </property>
+  <property name="compilePackage" displayName="Compile Package On Install">
+    <value>true</value>
+  </property>
+  <property name="fragPackage" displayName="Fragment Package On Install">
+    <value>true</value>
+  </property>
+  <property name="clearACLs" displayName="Delete ACLs for the assets from the target Integration Server">
+    <value>false</value>
+  </property>
+  <property name="disallowActivePackageInstall" displayName="disallowActivePackageInstall">
+    <value>false</value>
+  </property>
+  <property name="packageExecutionCheck" displayName="packageExecutionCheck">
+    <value>0</value>
+  </property>
+  <property name="suspendTriggersDuringDeploy" displayName="Suspend Triggers During Deployment">
+    <value>false</value>
+  </property>
+  <property name="syncDocTypesToBroker" displayName="Synchronize Document Types To Broker During Deployment">
+    <value>true</value>
+  </property>
+  <asset name="ISPackage.HelloDBP" displayName="HelloDBP">
+    <implementation.generic type="ispackage" />
+  </asset>
+  <asset name="Utility.sleep" displayName="Utility:sleep">
+    <implementation.generic type="isjavaservice" />
+    <dependsOn>IS:HelloDBP.code.source.Utility.java</dependsOn>
+    <dependsOn>IS:HelloDBP.code.classes.Utility.class</dependsOn>
+  </asset>
+  <asset name="Utility.uniqueThingID" displayName="Utility:uniqueThingID">
+    <implementation.generic type="isflowservice" />
+  </asset>
+  <asset name="Utility.thingLifecycle" displayName="Utility:thingLifecycle">
+    <implementation.generic type="isflowservice" />
+    <dependsOn>IS:Utility.uniqueThingID</dependsOn>
+    <dependsOn>IS:HelloIS.createThing</dependsOn>
+    <dependsOn>IS:HelloIS.updateThing</dependsOn>
+    <dependsOn>IS:Utility.sleep</dependsOn>
+    <dependsOn>IS:HelloIS.deleteThing</dependsOn>
+  </asset>
+  <asset name="HelloDBP.HelloProcess.HelloProcess_1.Default.Start_ThingAlert" displayName="HelloDBP.HelloProcess.HelloProcess_1.Default:Start_ThingAlert">
+    <implementation.generic type="isflowservice" />
+    <dependsOn>IS:HelloEvents.ThingAlert</dependsOn>
+    <dependsOn>IS:HelloIS.Thing</dependsOn>
+  </asset>
+  <asset name="HelloDBP.HelloProcess.Default.subscriptionTrigger" displayName="HelloDBP.HelloProcess.Default:subscriptionTrigger">
+    <implementation.generic type="istrigger" />
+    <dependsOn>IS:HelloEvents.ThingAlert</dependsOn>
+  </asset>
+  <asset name="HelloEvents.ThingEvent" displayName="HelloEvents:ThingEvent">
+    <implementation.generic type="isdocumenttype" />
+  </asset>
+  <asset name="HelloEvents.ThingAlert" displayName="HelloEvents:ThingAlert">
+    <implementation.generic type="isdocumenttype" />
+  </asset>
+  <asset name="HelloEvents.sendThingEvent" displayName="HelloEvents:sendThingEvent">
+    <implementation.generic type="isflowservice" />
+    <dependsOn>IS:HelloEvents.ThingEvent</dependsOn>
+  </asset>
+  <asset name="HelloEvents.EventDataStore" displayName="HelloEvents:EventDataStore">
+    <implementation.generic type="artconnection" />
+    <property name="art.deployment.state" displayName="State After Deployment">
+      <value>disable</value>
+    </property>
+    <property name="transactionType">
+      <value>NO_TRANSACTION</value>
+    </property>
+    <property name="datasourceClass">
+      <value>com.softwareag.evp.jdbc.EvpDataSource</value>
+    </property>
+    <property name="serverName">
+      <value>localhost</value>
+    </property>
+    <property name="user">
+      <value />
+    </property>
+    <property name="password" isSecure="true">
+      <value>{AES}aYrXC43dTWsDUHRWG5mhTA==</value>
+    </property>
+    <property name="databaseName">
+      <value />
+    </property>
+    <property name="portNumber">
+      <value>9340</value>
+    </property>
+    <property name="networkProtocol">
+      <value>tcp</value>
+    </property>
+    <property name="otherProperties">
+      <value>installDir=C:\SoftwareAG101\common\EventPersistence\JDBC;databaseURL=jdbc:evp:elasticsearch:2.3.2://localhost:9340/SAG_EventDataStore/default_index</value>
+    </property>
+    <property name=".CMGRPROP.poolable" displayName="poolable">
+      <value>true</value>
+    </property>
+    <property name=".CMGRPROP.minimumPoolSize" displayName="minimumPoolSize">
+      <value>1</value>
+    </property>
+    <property name=".CMGRPROP.maximumPoolSize" displayName="maximumPoolSize">
+      <value>10</value>
+    </property>
+    <property name=".CMGRPROP.poolIncrementSize" displayName="poolIncrementSize">
+      <value>1</value>
+    </property>
+    <property name=".CMGRPROP.blockingTimeout" displayName="blockingTimeout">
+      <value>1000</value>
+    </property>
+    <property name=".CMGRPROP.expireTimeout" displayName="expireTimeout">
+      <value>1000</value>
+    </property>
+    <property name=".CMGRPROP.startupRetryCount" displayName="startupRetryCount">
+      <value>0</value>
+    </property>
+    <property name=".CMGRPROP.startupBackoffSecs" displayName="startupBackoffSecs">
+      <value>10</value>
+    </property>
+  </asset>
+  <asset name="HelloEvents.getStoredEvents" displayName="HelloEvents:getStoredEvents">
+    <implementation.generic type="artservice" />
+    <dependsOn>IS:HelloEvents.EventDataStore</dependsOn>
+  </asset>
+  <asset name="HelloIS.createThing" displayName="HelloIS:createThing">
+    <implementation.generic type="isflowservice" />
+    <dependsOn>IS:HelloIS.Thing</dependsOn>
+    <dependsOn>IS:Utility.uniqueThingID</dependsOn>
+    <dependsOn>IS:HelloTerracotta.createThing</dependsOn>
+    <dependsOn>IS:HelloEvents.sendThingEvent</dependsOn>
+  </asset>
+  <asset name="HelloIS.listThings" displayName="HelloIS:listThings">
+    <implementation.generic type="isflowservice" />
+    <dependsOn>IS:HelloIS.Thing</dependsOn>
+    <dependsOn>IS:HelloTerracotta.readThing</dependsOn>
+  </asset>
+  <asset name="HelloIS.readThing" displayName="HelloIS:readThing">
+    <implementation.generic type="isflowservice" />
+    <dependsOn>IS:HelloIS.Thing</dependsOn>
+    <dependsOn>IS:HelloTerracotta.readThing</dependsOn>
+  </asset>
+  <asset name="HelloIS.updateThing" displayName="HelloIS:updateThing">
+    <implementation.generic type="isflowservice" />
+    <dependsOn>IS:HelloIS.Thing</dependsOn>
+    <dependsOn>IS:HelloTerracotta.updateThing</dependsOn>
+    <dependsOn>IS:HelloEvents.sendThingEvent</dependsOn>
+  </asset>
+  <asset name="HelloIS.Thing" displayName="HelloIS:Thing">
+    <implementation.generic type="isdocumenttype" />
+  </asset>
+  <asset name="HelloIS.deleteThing" displayName="HelloIS:deleteThing">
+    <implementation.generic type="isflowservice" />
+    <dependsOn>IS:HelloTerracotta.deleteThing</dependsOn>
+    <dependsOn>IS:HelloEvents.sendThingEvent</dependsOn>
+  </asset>
+  <asset name="HelloIS.HelloDBP" displayName="HelloIS:HelloDBP">
+    <implementation.generic type="isrestresource" />
+    <dependsOn>IS:HelloIS.listThings</dependsOn>
+    <dependsOn>IS:HelloIS.readThing</dependsOn>
+    <dependsOn>IS:HelloIS.createThing</dependsOn>
+    <dependsOn>IS:HelloIS.updateThing</dependsOn>
+    <dependsOn>IS:HelloIS.deleteThing</dependsOn>
+  </asset>
+  <asset name="HelloTerracotta.ThingsConnection" displayName="HelloTerracotta:ThingsConnection">
+    <implementation.generic type="artconnection" />
+    <property name="art.deployment.state" displayName="State After Deployment">
+      <value>disable</value>
+    </property>
+    <property name="uri">
+      <value>terracotta://localhost:9410</value>
+    </property>
+    <property name=".CMGRPROP.poolable" displayName="poolable">
+      <value>true</value>
+    </property>
+    <property name=".CMGRPROP.minimumPoolSize" displayName="minimumPoolSize">
+      <value>1</value>
+    </property>
+    <property name=".CMGRPROP.maximumPoolSize" displayName="maximumPoolSize">
+      <value>10</value>
+    </property>
+    <property name=".CMGRPROP.poolIncrementSize" displayName="poolIncrementSize">
+      <value>1</value>
+    </property>
+    <property name=".CMGRPROP.blockingTimeout" displayName="blockingTimeout">
+      <value>1000</value>
+    </property>
+    <property name=".CMGRPROP.expireTimeout" displayName="expireTimeout">
+      <value>1000</value>
+    </property>
+    <property name=".CMGRPROP.startupRetryCount" displayName="startupRetryCount">
+      <value>0</value>
+    </property>
+    <property name=".CMGRPROP.startupBackoffSecs" displayName="startupBackoffSecs">
+      <value>10</value>
+    </property>
+  </asset>
+  <asset name="HelloTerracotta.createThing" displayName="HelloTerracotta:createThing">
+    <implementation.generic type="artservice" />
+    <dependsOn>IS:HelloTerracotta.ThingsConnection</dependsOn>
+  </asset>
+  <asset name="HelloTerracotta.deleteThing" displayName="HelloTerracotta:deleteThing">
+    <implementation.generic type="artservice" />
+    <dependsOn>IS:HelloTerracotta.ThingsConnection</dependsOn>
+  </asset>
+  <asset name="HelloTerracotta.readThing" displayName="HelloTerracotta:readThing">
+    <implementation.generic type="artservice" />
+    <dependsOn>IS:HelloTerracotta.ThingsConnection</dependsOn>
+  </asset>
+  <asset name="HelloTerracotta.updateThing" displayName="HelloTerracotta:updateThing">
+    <implementation.generic type="artservice" />
+    <dependsOn>IS:HelloTerracotta.ThingsConnection</dependsOn>
+  </asset>
+  <asset name="HelloDBP.code" displayName="code">
+    <implementation.generic type="isfolder" />
+  </asset>
+  <asset name="HelloDBP.code.classes" displayName="code/classes">
+    <implementation.generic type="isfolder" />
+  </asset>
+  <asset name="HelloDBP.code.classes.Utility.class" displayName="code/classes/Utility.class">
+    <implementation.generic type="isfile" />
+  </asset>
+  <asset name="HelloDBP.code.jars" displayName="code/jars">
+    <implementation.generic type="isfolder" />
+  </asset>
+  <asset name="HelloDBP.code.source" displayName="code/source">
+    <implementation.generic type="isfolder" />
+  </asset>
+  <asset name="HelloDBP.code.source.Utility.java" displayName="code/source/Utility.java">
+    <implementation.generic type="isfile" />
+  </asset>
+  <asset name="HelloDBP.config" displayName="config">
+    <implementation.generic type="isfolder" />
+  </asset>
+  <asset name="HelloDBP.config.wmprt" displayName="config/wmprt">
+    <implementation.generic type="isfolder" />
+  </asset>
+  <asset name="HelloDBP.config.wmprt.HelloDBP.HelloProcess.HelloDBP_HelloProcess1.Default.xml" displayName="config/wmprt/HelloDBP.HelloProcess.HelloDBP_HelloProcess1.Default.xml">
+    <implementation.generic type="isfile" />
+  </asset>
+  <asset name="HelloDBP.config.aclmap_pkg.cnf" displayName="config/aclmap_pkg.cnf">
+    <implementation.generic type="isfile" />
+  </asset>
+  <asset name="HelloDBP.doc" displayName="doc">
+    <implementation.generic type="isfolder" />
+  </asset>
+  <asset name="HelloDBP.lib" displayName="lib">
+    <implementation.generic type="isfolder" />
+  </asset>
+  <asset name="HelloDBP.pub" displayName="pub">
+    <implementation.generic type="isfolder" />
+  </asset>
+  <asset name="HelloDBP.resources" displayName="resources">
+    <implementation.generic type="isfolder" />
+  </asset>
+  <asset name="HelloDBP.templates" displayName="templates">
+    <implementation.generic type="isfolder" />
+  </asset>
+  <asset name="HelloDBP.web" displayName="web">
+    <implementation.generic type="isfolder" />
+  </asset>
+</asset_composite>
+
