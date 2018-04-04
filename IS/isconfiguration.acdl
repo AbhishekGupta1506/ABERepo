@@ -2,7 +2,7 @@
   <implementation.generic type="isconfiguration" />
   <buildInfo name="build.version" value="10.1.9" />
   <buildInfo name="BuildVersion" value="10.1.9" />
-  <buildInfo name="BuildTimestamp" value="2018-02-09T05:31:45" />
+  <buildInfo name="BuildTimestamp" value="2018-04-04T15:38:57" />
   <buildInfo name="MinimumTargetRuntimeVersion" value="10.1.0.0" />
   <property name="suspendTasksDuringDeploy" displayName="Suspend Tasks During Deployment">
     <value>none</value>
@@ -19,7 +19,7 @@
   <asset name="ISProperty.watt.server.compile" displayName="watt.server.compile">
     <implementation.generic type="isproperty" />
     <property name="watt.server.compile">
-      <value>C:\SoftwareAG101\jvm\jvm\bin\javac -classpath {0} -d {1} {2}</value>
+      <value>C:\Users\Administrator\Desktop\HelloDBP\SoftwareAG101New\jvm\jvm\bin\javac -classpath {0} -d {1} {2}</value>
     </property>
   </asset>
   <asset name="Group.CentralAdministrators" displayName="CentralAdministrators">
@@ -37,6 +37,9 @@
   </asset>
   <asset name="Group.SimulationUsers" displayName="SimulationUsers">
     <implementation.generic type="isgroup" />
+  </asset>
+  <asset name="Acl.DeployerAdmin" displayName="DeployerAdmin">
+    <implementation.generic type="isacl" />
   </asset>
   <asset name="Acl.MonitorAdministrators" displayName="MonitorAdministrators">
     <implementation.generic type="isacl" />
@@ -168,7 +171,7 @@
   <asset name="JMSAlias.PE_NONTRANSACTIONAL_ALIAS" displayName="PE_NONTRANSACTIONAL_ALIAS">
     <implementation.generic type="isjmsalias" />
     <property name="clientID" displayName="Connection Client ID">
-      <value>IS6dbbfc03_9379_4bcc_9985_8089362142fc</value>
+      <value>ISec0c0157_abc4_4ed0_b12e_c73cc78e11fd</value>
     </property>
     <property name="user" displayName="User">
       <value />
@@ -187,22 +190,7 @@
   <asset name="JDBCDriverAlias.MySQL Database Java Connector Driver" displayName="MySQL Database Java Connector Driver">
     <implementation.generic type="isjdbcdriveralias" />
   </asset>
-  <asset name="JDBCPoolAlias.Local" displayName="Local">
-    <implementation.generic type="isjdbcpoolalias" />
-    <property name="url" displayName="Database URL">
-      <value>jdbc:wm:sqlserver://localhost:1433;DatabaseName=WEBM101</value>
-    </property>
-    <property name="uid" displayName="Database User">
-      <value>Administrator</value>
-    </property>
-    <property name="pwd" displayName="Database User Password" isSecure="true">
-      <value>{AES}Y5IgMqjfvkgbg7p5VUZztw==</value>
-    </property>
-  </asset>
   <asset name="JDBCFunctionalAlias.Adapters" displayName="Adapters">
-    <implementation.generic type="isjdbcfunctionalalias" />
-  </asset>
-  <asset name="JDBCFunctionalAlias.APIGateway" displayName="APIGateway">
     <implementation.generic type="isjdbcfunctionalalias" />
   </asset>
   <asset name="JDBCFunctionalAlias.Archiving" displayName="Archiving">
@@ -213,26 +201,21 @@
   </asset>
   <asset name="JDBCFunctionalAlias.DocumentHistory" displayName="DocumentHistory">
     <implementation.generic type="isjdbcfunctionalalias" />
-    <dependsOn>IS:JDBCPoolAlias.Local</dependsOn>
   </asset>
   <asset name="JDBCFunctionalAlias.ISCoreAudit" displayName="ISCoreAudit">
     <implementation.generic type="isjdbcfunctionalalias" />
-    <dependsOn>IS:JDBCPoolAlias.Local</dependsOn>
   </asset>
   <asset name="JDBCFunctionalAlias.ISInternal" displayName="ISInternal">
     <implementation.generic type="isjdbcfunctionalalias" />
-    <dependsOn>IS:JDBCPoolAlias.Local</dependsOn>
   </asset>
   <asset name="JDBCFunctionalAlias.MobileSupport" displayName="MobileSupport">
     <implementation.generic type="isjdbcfunctionalalias" />
   </asset>
   <asset name="JDBCFunctionalAlias.ProcessAudit" displayName="ProcessAudit">
     <implementation.generic type="isjdbcfunctionalalias" />
-    <dependsOn>IS:JDBCPoolAlias.Local</dependsOn>
   </asset>
   <asset name="JDBCFunctionalAlias.ProcessEngine" displayName="ProcessEngine">
     <implementation.generic type="isjdbcfunctionalalias" />
-    <dependsOn>IS:JDBCPoolAlias.Local</dependsOn>
   </asset>
   <asset name="JDBCFunctionalAlias.Reporting" displayName="Reporting">
     <implementation.generic type="isjdbcfunctionalalias" />
@@ -248,7 +231,6 @@
   </asset>
   <asset name="JDBCFunctionalAlias.Xref" displayName="Xref">
     <implementation.generic type="isjdbcfunctionalalias" />
-    <dependsOn>IS:JDBCPoolAlias.Local</dependsOn>
   </asset>
   <asset name="KeystoreAlias.DEFAULT_IS_KEYSTORE" displayName="DEFAULT_IS_KEYSTORE">
     <implementation.generic type="iskeystorealias" />
@@ -275,18 +257,6 @@
     </property>
     <property name="ksLocation" displayName="Location">
       <value>..\..\..\common\conf\platform_truststore.jks</value>
-    </property>
-  </asset>
-  <asset name="TruststoreAlias.DEFAULT_WMCLOUD_TRUSTSTORE" displayName="DEFAULT_WMCLOUD_TRUSTSTORE">
-    <implementation.generic type="istruststorealias" />
-    <property name="useSourceTruststore" displayName="Use Source Truststore">
-      <value>true</value>
-    </property>
-    <property name="ksPassword" displayName="Password" isSecure="true">
-      <value>{AES}Y5IgMqjfvkgbg7p5VUZztw==</value>
-    </property>
-    <property name="ksLocation" displayName="Location">
-      <value>packages\WmCloud\config\wmcloud_truststore.jks</value>
     </property>
   </asset>
   <asset name="Broker.DefaultEndPoint" displayName="DefaultEndPoint">

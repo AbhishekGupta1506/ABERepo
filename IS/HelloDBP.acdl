@@ -2,7 +2,7 @@
   <implementation.generic type="ispackage" />
   <buildInfo name="build.version" value="10.1.9" />
   <buildInfo name="BuildVersion" value="10.1.9" />
-  <buildInfo name="BuildTimestamp" value="2018-02-09T05:31:37" />
+  <buildInfo name="BuildTimestamp" value="2018-04-04T15:38:51" />
   <buildInfo name="MinimumTargetRuntimeVersion" value="10.1.0.0" />
   <property name="activatePkgOnInstall" displayName="Activate Package On Install">
     <value>true</value>
@@ -34,30 +34,8 @@
   <asset name="ISPackage.HelloDBP" displayName="HelloDBP">
     <implementation.generic type="ispackage" />
   </asset>
-  <asset name="Utility.sleep" displayName="Utility:sleep">
-    <implementation.generic type="isjavaservice" />
-    <dependsOn>IS:HelloDBP.code.source.Utility.java</dependsOn>
-    <dependsOn>IS:HelloDBP.code.classes.Utility.class</dependsOn>
-  </asset>
   <asset name="Utility.uniqueThingID" displayName="Utility:uniqueThingID">
     <implementation.generic type="isflowservice" />
-  </asset>
-  <asset name="Utility.thingLifecycle" displayName="Utility:thingLifecycle">
-    <implementation.generic type="isflowservice" />
-    <dependsOn>IS:Utility.uniqueThingID</dependsOn>
-    <dependsOn>IS:HelloIS.createThing</dependsOn>
-    <dependsOn>IS:HelloIS.updateThing</dependsOn>
-    <dependsOn>IS:Utility.sleep</dependsOn>
-    <dependsOn>IS:HelloIS.deleteThing</dependsOn>
-  </asset>
-  <asset name="HelloDBP.HelloProcess.HelloProcess_1.Default.Start_ThingAlert" displayName="HelloDBP.HelloProcess.HelloProcess_1.Default:Start_ThingAlert">
-    <implementation.generic type="isflowservice" />
-    <dependsOn>IS:HelloEvents.ThingAlert</dependsOn>
-    <dependsOn>IS:HelloIS.Thing</dependsOn>
-  </asset>
-  <asset name="HelloDBP.HelloProcess.Default.subscriptionTrigger" displayName="HelloDBP.HelloProcess.Default:subscriptionTrigger">
-    <implementation.generic type="istrigger" />
-    <dependsOn>IS:HelloEvents.ThingAlert</dependsOn>
   </asset>
   <asset name="HelloEvents.ThingEvent" displayName="HelloEvents:ThingEvent">
     <implementation.generic type="isdocumenttype" />
@@ -68,6 +46,9 @@
   <asset name="HelloEvents.sendThingEvent" displayName="HelloEvents:sendThingEvent">
     <implementation.generic type="isflowservice" />
     <dependsOn>IS:HelloEvents.ThingEvent</dependsOn>
+  </asset>
+  <asset name="HelloEvents.TestEvent" displayName="HelloEvents:TestEvent">
+    <implementation.generic type="isdocumenttype" />
   </asset>
   <asset name="HelloEvents.EventDataStore" displayName="HelloEvents:EventDataStore">
     <implementation.generic type="artconnection" />
@@ -99,7 +80,7 @@
       <value>tcp</value>
     </property>
     <property name="otherProperties">
-      <value>installDir=C:\SoftwareAG101\common\EventPersistence\JDBC;databaseURL=jdbc:evp:elasticsearch:2.3.2://localhost:9340/SAG_EventDataStore/default_index</value>
+      <value>installDir=C:\Users\Administrator\Desktop\HelloDBP\SoftwareAG101New\common\EventPersistence\JDBC;databaseURL=jdbc:evp:elasticsearch:2.3.2://localhost:9340/SAG_EventDataStore/default_index</value>
     </property>
     <property name=".CMGRPROP.poolable" displayName="poolable">
       <value>true</value>
@@ -130,6 +111,15 @@
     <implementation.generic type="artservice" />
     <dependsOn>IS:HelloEvents.EventDataStore</dependsOn>
   </asset>
+  <asset name="HelloIS.RunCreateThingsRestService" displayName="HelloIS:RunCreateThingsRestService">
+    <implementation.generic type="isflowservice" />
+  </asset>
+  <asset name="HelloIS.RunqueryThingRestService" displayName="HelloIS:RunqueryThingRestService">
+    <implementation.generic type="isflowservice" />
+  </asset>
+  <asset name="HelloIS.RunListRestService" displayName="HelloIS:RunListRestService">
+    <implementation.generic type="isflowservice" />
+  </asset>
   <asset name="HelloIS.createThing" displayName="HelloIS:createThing">
     <implementation.generic type="isflowservice" />
     <dependsOn>IS:HelloIS.Thing</dependsOn>
@@ -147,14 +137,11 @@
     <dependsOn>IS:HelloIS.Thing</dependsOn>
     <dependsOn>IS:HelloTerracotta.readThing</dependsOn>
   </asset>
-  <asset name="HelloIS.updateThing" displayName="HelloIS:updateThing">
-    <implementation.generic type="isflowservice" />
-    <dependsOn>IS:HelloIS.Thing</dependsOn>
-    <dependsOn>IS:HelloTerracotta.updateThing</dependsOn>
-    <dependsOn>IS:HelloEvents.sendThingEvent</dependsOn>
-  </asset>
   <asset name="HelloIS.Thing" displayName="HelloIS:Thing">
     <implementation.generic type="isdocumenttype" />
+  </asset>
+  <asset name="HelloIS.RunDeleteRestService" displayName="HelloIS:RunDeleteRestService">
+    <implementation.generic type="isflowservice" />
   </asset>
   <asset name="HelloIS.deleteThing" displayName="HelloIS:deleteThing">
     <implementation.generic type="isflowservice" />
@@ -224,29 +211,14 @@
   <asset name="HelloDBP.code.classes" displayName="code/classes">
     <implementation.generic type="isfolder" />
   </asset>
-  <asset name="HelloDBP.code.classes.Utility.class" displayName="code/classes/Utility.class">
-    <implementation.generic type="isfile" />
-  </asset>
   <asset name="HelloDBP.code.jars" displayName="code/jars">
     <implementation.generic type="isfolder" />
   </asset>
   <asset name="HelloDBP.code.source" displayName="code/source">
     <implementation.generic type="isfolder" />
   </asset>
-  <asset name="HelloDBP.code.source.Utility.java" displayName="code/source/Utility.java">
-    <implementation.generic type="isfile" />
-  </asset>
   <asset name="HelloDBP.config" displayName="config">
     <implementation.generic type="isfolder" />
-  </asset>
-  <asset name="HelloDBP.config.wmprt" displayName="config/wmprt">
-    <implementation.generic type="isfolder" />
-  </asset>
-  <asset name="HelloDBP.config.wmprt.HelloDBP.HelloProcess.HelloDBP_HelloProcess1.Default.xml" displayName="config/wmprt/HelloDBP.HelloProcess.HelloDBP_HelloProcess1.Default.xml">
-    <implementation.generic type="isfile" />
-  </asset>
-  <asset name="HelloDBP.config.aclmap_pkg.cnf" displayName="config/aclmap_pkg.cnf">
-    <implementation.generic type="isfile" />
   </asset>
   <asset name="HelloDBP.doc" displayName="doc">
     <implementation.generic type="isfolder" />

@@ -2,7 +2,7 @@
   <implementation.generic type="ispackage" />
   <buildInfo name="build.version" value="10.1.9" />
   <buildInfo name="BuildVersion" value="10.1.9" />
-  <buildInfo name="BuildTimestamp" value="2018-02-09T05:31:37" />
+  <buildInfo name="BuildTimestamp" value="2018-04-04T15:38:51" />
   <buildInfo name="MinimumTargetRuntimeVersion" value="10.1.0.0" />
   <property name="activatePkgOnInstall" displayName="Activate Package On Install">
     <value>true</value>
@@ -34,10 +34,6 @@
   <asset name="ISPackage.Default" displayName="Default">
     <implementation.generic type="ispackage" />
   </asset>
-  <asset name="test.testConvertFieldTypes" displayName="test:testConvertFieldTypes">
-    <implementation.generic type="artservice" />
-    <dependsOn>IS:HelloTerracotta.ThingsConnection</dependsOn>
-  </asset>
   <asset name="Default.code" displayName="code">
     <implementation.generic type="isfolder" />
   </asset>
@@ -52,9 +48,6 @@
   </asset>
   <asset name="Default.config" displayName="config">
     <implementation.generic type="isfolder" />
-  </asset>
-  <asset name="Default.config.aclmap_pkg.cnf" displayName="config/aclmap_pkg.cnf">
-    <implementation.generic type="isfile" />
   </asset>
   <asset name="Default.config.CSRFLandingPages.cnf" displayName="config/CSRFLandingPages.cnf">
     <implementation.generic type="isfile" />
