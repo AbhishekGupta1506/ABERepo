@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <asset_composite name="APIGatewayAssets" displayName="Assets for API Gateway" runtimeVersion="10.1" targetNamespace="http://namespaces.softwareag.com/webMethods/APIGateway" xmlns="http://namespaces.softwareag.com/acdl/1.0" xmlns:EDA="http://namespaces.softwareag.com/webMethods/EDA" xmlns:MWS="http://namespaces.softwareag.com/webMethods/MWS" xmlns:IS="http://namespaces.softwareag.com/webMethods/IS" xmlns:APIPORTAL="http://namespaces.softwareag.com/webMethods/APIPORTAL" xmlns:AgileApps="http://namespaces.softwareag.com/webMethods/AgileApps" xmlns:BROKER="http://namespaces.softwareag.com/webMethods/BROKER" xmlns:implDetails="http://namespaces.softwareag.com/acdl/implDetails" xmlns:UniversalMessaging="http://namespaces.softwareag.com/webMethods/UniversalMessaging" xmlns:TN="http://namespaces.softwareag.com/webMethods/TN" xmlns:RULES="http://namespaces.softwareag.com/webMethods/RULES" xmlns:BPM="http://namespaces.softwareag.com/webMethods/BPM" xmlns:Optimize="http://namespaces.softwareag.com/webMethods/Optimize">
-    <buildInfo name="BuildTimestamp" value="2018-04-04T15:39:02"/>
+    <buildInfo name="BuildTimestamp" value="2018-04-06T11:03:59"/>
     <asset name="API.0f0fda66-cfe7-4f2f-88d3-abf0467a1666" displayName="test[1.0]" isDeployable="true">
         <implementation.generic type="API"/>
         <dependsOn>APIGateway:Policy.a9fb5a87-2bca-47db-9674-8c4527c87a11</dependsOn>
@@ -16,16 +16,7 @@
     <asset name="PolicyAction.f129f0ef-86f1-4acd-9bea-e4501618aa5d" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API test[1.0]" isDeployable="true">
         <implementation.generic type="PolicyAction"/>
     </asset>
-    <asset name="AdministratorSetting.mobileApp" displayName="mobileApp" isDeployable="true">
-        <implementation.generic type="AdministratorSetting"/>
-    </asset>
-    <asset name="PolicyAction.69ff3bb2-5ed1-4077-b8c5-9790c36218eb" displayName="Policy Action [Conditional Error Processing] -&gt; Policy For API HelloDBP_APIGateway[1.0]" isDeployable="true">
-        <implementation.generic type="PolicyAction"/>
-    </asset>
     <asset name="PolicyAction.56f80026-03d3-4a14-a540-2d05a8813fd1" displayName="Policy Action [Require HTTP / HTTPS] -&gt; Policy For API HelloDBP_APIGateway[1.0]" isDeployable="true">
-        <implementation.generic type="PolicyAction"/>
-    </asset>
-    <asset name="PolicyAction.e90cc6f7-1be0-4672-b0c1-59a6757ced70" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API HelloDBP_APIGateway[1.0]" isDeployable="true">
         <implementation.generic type="PolicyAction"/>
     </asset>
     <asset name="PortalGateway.b3142256-4020-4c49-aef1-ae6ea8e16a55" displayName="API_Portal" isDeployable="true">
@@ -33,6 +24,16 @@
     </asset>
     <asset name="PolicyAction.GlobalLogInvocationPolicyAction" displayName="Policy Action [Log Invocation] -&gt; Transaction logging" isDeployable="true">
         <implementation.generic type="PolicyAction"/>
+    </asset>
+    <asset name="Alias.351eea4e-95af-4cca-80d0-1eb6db0563f1" displayName="OKTA" isDeployable="true">
+        <implementation.generic type="Alias"/>
+    </asset>
+    <asset name="PolicyAction.f249c27a-7934-42d3-8cdb-e8912023e0e8" displayName="Policy Action [Log Invocation] -&gt; Policy For API HelloDBP_APIGateway[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+    <asset name="Policy.GlobalLogInvocationPolicy" displayName="Transaction logging[Global Policy]" isDeployable="true">
+        <implementation.generic type="Policy"/>
+        <dependsOn>APIGateway:PolicyAction.GlobalLogInvocationPolicyAction</dependsOn>
     </asset>
     <asset name="API.3a47a5d4-121a-4fcc-b1af-3b44b7f165e1" displayName="HelloDBP_APIGateway[1.0]" isDeployable="true">
         <implementation.generic type="API"/>
@@ -46,20 +47,19 @@
         <dependsOn>APIGateway:PolicyAction.f249c27a-7934-42d3-8cdb-e8912023e0e8</dependsOn>
         <dependsOn>APIGateway:PolicyAction.f89a20c1-e9c7-4add-ad50-16ce3a07ef35</dependsOn>
     </asset>
-    <asset name="PolicyAction.f249c27a-7934-42d3-8cdb-e8912023e0e8" displayName="Policy Action [Log Invocation] -&gt; Policy For API HelloDBP_APIGateway[1.0]" isDeployable="true">
+    <asset name="PolicyAction.e90cc6f7-1be0-4672-b0c1-59a6757ced70" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API HelloDBP_APIGateway[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+    <asset name="PolicyAction.69ff3bb2-5ed1-4077-b8c5-9790c36218eb" displayName="Policy Action [Conditional Error Processing] -&gt; Policy For API HelloDBP_APIGateway[1.0]" isDeployable="true">
         <implementation.generic type="PolicyAction"/>
     </asset>
     <asset name="PolicyAction.f89a20c1-e9c7-4add-ad50-16ce3a07ef35" displayName="Policy Action [Validate HTTP Headers] -&gt; Policy For API HelloDBP_APIGateway[1.0]" isDeployable="true">
         <implementation.generic type="PolicyAction"/>
     </asset>
+    <asset name="AdministratorSetting.mobileApp" displayName="mobileApp" isDeployable="true">
+        <implementation.generic type="AdministratorSetting"/>
+    </asset>
     <asset name="Alias.e47e8326-8799-4f50-8e9b-e185ec8414f2" displayName="PingFederate" isDeployable="true">
         <implementation.generic type="Alias"/>
-    </asset>
-    <asset name="Alias.351eea4e-95af-4cca-80d0-1eb6db0563f1" displayName="OKTA" isDeployable="true">
-        <implementation.generic type="Alias"/>
-    </asset>
-    <asset name="Policy.GlobalLogInvocationPolicy" displayName="Transaction logging[Global Policy]" isDeployable="true">
-        <implementation.generic type="Policy"/>
-        <dependsOn>APIGateway:PolicyAction.GlobalLogInvocationPolicyAction</dependsOn>
     </asset>
 </asset_composite>

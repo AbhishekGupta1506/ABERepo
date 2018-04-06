@@ -1,8 +1,8 @@
 <asset_composite xmlns="http://namespaces.softwareag.com/acdl/1.0" targetNamespace="http://namespaces.softwareag.com/webMethods/IS" name="isconfiguration" runtimeVersion="10.1.0.0">
   <implementation.generic type="isconfiguration" />
-  <buildInfo name="build.version" value="10.1.9" />
-  <buildInfo name="BuildVersion" value="10.1.9" />
-  <buildInfo name="BuildTimestamp" value="2018-04-04T15:38:57" />
+  <buildInfo name="build.version" value="10.1.12" />
+  <buildInfo name="BuildVersion" value="10.1.12" />
+  <buildInfo name="BuildTimestamp" value="2018-04-06T11:03:55" />
   <buildInfo name="MinimumTargetRuntimeVersion" value="10.1.0.0" />
   <property name="suspendTasksDuringDeploy" displayName="Suspend Tasks During Deployment">
     <value>none</value>
