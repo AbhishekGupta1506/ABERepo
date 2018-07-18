@@ -1,0 +1,3 @@
+[submodule "CloudTransform"]
+	path = CloudTransform
+	url = https://github.com/AbhishekGupta1506/CloudTransform.git
